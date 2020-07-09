@@ -59,13 +59,6 @@ public class Profile extends Auditable<String> {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Lob
-    @ApiModelProperty(notes = "Profile photo profile data byte")
-    private byte[] photoProfile;
-
-    @ApiModelProperty(notes = "Profile photo filename")
-    private String photoProfileFilename;
-
     @ApiModelProperty(notes = "Profile city")
     private String city;
 
@@ -79,6 +72,11 @@ public class Profile extends Auditable<String> {
     @Size(max = 200)
     private String interest;
 
+    @ApiModelProperty(notes = "Photo profile url")
+    @Column(length = 200)
+    @Size(max = 200)
+    private String photoProfileUrl;
+
     @NotNull
-    protected boolean dataState;
+    protected boolean deleted;
 }
