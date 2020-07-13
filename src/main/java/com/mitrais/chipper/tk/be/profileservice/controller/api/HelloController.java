@@ -1,4 +1,4 @@
-package com.mitrais.chipper.tk.be.profileservice.controller;
+package com.mitrais.chipper.tk.be.profileservice.controller.api;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
