@@ -1,6 +1,8 @@
 package com.mitrais.chipper.tk.be.profileservice.config;
 
+import com.mitrais.chipper.tk.be.profileservice.interfaces.UserInterface;
 import com.mitrais.chipper.tk.be.profileservice.security.TokenAuthenticationFilter;
+import com.mitrais.chipper.tk.be.profileservice.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtConfig jwtConfig;
 
+    @Autowired
+    TokenProvider tokenProvider;
+
+    @Autowired
+    UserInterface userInterface;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -28,8 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
-                .addFilterAfter(new TokenAuthenticationFilter(jwtConfig), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new TokenAuthenticationFilter(jwtConfig, userInterface, tokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
+                .antMatchers("/user/**").permitAll()
                 .anyRequest().authenticated();
     }
 
