@@ -16,6 +16,8 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+  flyway:
+    validateOnMigrate: false
 
 eureka:
   instance:
