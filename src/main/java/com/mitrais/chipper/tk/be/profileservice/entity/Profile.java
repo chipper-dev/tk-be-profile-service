@@ -41,7 +41,7 @@ public class Profile extends Auditable<String> {
     private Long id;
 
     @NotNull
-    private Long user;
+    private Long userId;
 
     @NotEmpty
     @ApiModelProperty(notes = "Profile full name")
