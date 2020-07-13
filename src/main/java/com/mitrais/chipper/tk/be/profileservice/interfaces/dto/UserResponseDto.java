@@ -5,6 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Temporal;
+import java.util.Date;
+
+import static javax.persistence.TemporalType.TIMESTAMP;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -15,10 +20,13 @@ public class UserResponseDto {
     private String provider;
     private String uid;
     private String messagingToken;
-    private String logout;
     private String dataState;
-    private String createdDate;
     private String createdBy;
-    private String lastModifiedDate;
     private String lastModifiedBy;
+    @Temporal(TIMESTAMP)
+    private Date createdDate;
+    @Temporal(TIMESTAMP)
+    private Date lastModifiedDate;
+    @Temporal(TIMESTAMP)
+    private Date logout;
 }
