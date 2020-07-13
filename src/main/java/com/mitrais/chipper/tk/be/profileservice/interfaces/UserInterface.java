@@ -10,6 +10,6 @@ import java.util.Optional;
 @FeignClient(name = "backend-service")
 @RequestMapping(value = "/api")
 public interface UserInterface {
-    @RequestMapping(value = "/user/{id}")
-    Optional<UserResponseDto> fetchAdminByUsername(@PathVariable("id") Long id);
+    @RequestMapping(value = "/users/{id}")
+    Optional<UserResponseDto> fetchUserbyId(@PathVariable("id") Long id);
 }
