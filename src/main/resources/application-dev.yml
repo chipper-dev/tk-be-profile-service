@@ -19,6 +19,10 @@ spring:
   flyway:
     validateOnMigrate: false
 
+security:
+  jwt:
+    secret: 1234567890
+
 eureka:
   instance:
     leaseRenewalIntervalInSeconds: 5
