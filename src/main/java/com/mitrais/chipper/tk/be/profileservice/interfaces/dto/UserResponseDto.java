@@ -17,6 +17,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 public class UserResponseDto {
     private Long userId;
     private String email;
+    private String passwordHashed;
     private String provider;
     private String uid;
     private String messagingToken;
