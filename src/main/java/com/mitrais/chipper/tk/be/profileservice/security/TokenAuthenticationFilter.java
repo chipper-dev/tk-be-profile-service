@@ -43,7 +43,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
         try {
             Long userId = tokenProvider.getUserIdFromToken(token);
             if(userId != null) {
-                Date logoutTime = userInterface.fetchUserbyId(userId).orElseThrow(() -> new NoSuchElementException("User not found")).getLogout();
+                Date logoutTime = userInterface.fetchUserbyId(header, userId).orElseThrow(() -> new NoSuchElementException("User not found")).getLogout();
                 if (tokenProvider.validateToken(token, logoutTime)) {
 
                     List<GrantedAuthority> authorities = Collections.
