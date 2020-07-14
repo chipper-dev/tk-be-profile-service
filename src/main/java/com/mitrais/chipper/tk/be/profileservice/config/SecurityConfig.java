@@ -26,6 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserInterface userInterface;
 
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-resources/**",
+            "/swagger-ui.html",
+            "/v2/api-docs"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -38,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterAfter(new TokenAuthenticationFilter(jwtConfig, userInterface, tokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated();
     }
 
