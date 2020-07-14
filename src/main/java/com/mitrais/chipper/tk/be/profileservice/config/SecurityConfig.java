@@ -21,10 +21,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtConfig jwtConfig;
 
     @Autowired
-    TokenProvider tokenProvider;
+    private TokenProvider tokenProvider;
 
     @Autowired
-    UserInterface userInterface;
+    private UserInterface userInterface;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -38,7 +38,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterAfter(new TokenAuthenticationFilter(jwtConfig, userInterface, tokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers("/user/**").permitAll()
                 .anyRequest().authenticated();
     }
 
