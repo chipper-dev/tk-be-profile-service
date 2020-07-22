@@ -1,14 +1,16 @@
 package com.mitrais.chipper.tk.be.profileservice.controller.dto.response;
 
-import com.mitrais.chipper.tk.be.profileservice.common.Gender;
+import java.util.HashMap;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import com.mitrais.chipper.temankondangan.backend.common.enums.Gender;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
-
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import java.util.HashMap;
 
 @Data
 @Builder

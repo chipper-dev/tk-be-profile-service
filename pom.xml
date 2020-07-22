@@ -119,7 +119,11 @@
 			<version>2.3</version>
 		</dependency>
 
-
+		<dependency>
+			<groupId>com.mitrais.chipper.temankondangan.backend</groupId>
+			<artifactId>common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 	</dependencies>
 
