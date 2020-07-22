@@ -5,7 +5,7 @@ spring:
       maximumPoolSize: 5
     url: jdbc:postgresql://localhost:5432/tk_db_profile_service
     username: postgres
-    password: postgres
+    password: admin
   jpa:
     show-sql: true
     hibernate:
