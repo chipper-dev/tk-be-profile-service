@@ -23,8 +23,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.mitrais.chipper.temankondangan.backend.common.entity.Auditable;
 import com.mitrais.chipper.temankondangan.backend.common.enums.Gender;
-import com.mitrais.chipper.tk.be.profileservice.entity.common.Auditable;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
