@@ -1,40 +1,40 @@
-server:
-  port: 8100
-  
-spring:
-  datasource:
-    hikari:
-      connectionTimeout: 20000
-      maximumPoolSize: 5
-    url: jdbc:postgresql://localhost:5432/tk_db_profile_service
-    username: postgres
-    password: admin
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: validate
-      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-    properties:
-      hibernate:
-        jdbc:
-          lob:
-            non_contextual_creation: true
-  flyway:
-    validateOnMigrate: false
-
-security:
-  jwt:
-    secret: 1234567890
-
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 2
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
-    healthcheck:
-      enabled: true
-    lease:
-      duration: 5
+#server:
+#  port: 8100
+#  
+#spring:
+#  datasource:
+#    hikari:
+#      connectionTimeout: 20000
+#      maximumPoolSize: 5
+#    url: jdbc:postgresql://localhost:5432/tk_db_profile_service
+#    username: postgres
+#    password: admin
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: validate
+#      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+#    properties:
+#      hibernate:
+#        jdbc:
+#          lob:
+#            non_contextual_creation: true
+#  flyway:
+#    validateOnMigrate: false
+#
+#security:
+#  jwt:
+#    secret: 1234567890
+#
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 5
+#    leaseExpirationDurationInSeconds: 2
+#    prefer-ip-address: true
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration: 5

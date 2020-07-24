@@ -26,12 +26,12 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-  flyway:
-    validateOnMigrate: false
-
-security:
-  jwt:
-    secret: 1234567890
+#  flyway:
+#    validateOnMigrate: false
+#
+#security:
+#  jwt:
+#    secret: 1234567890
 
 eureka:
   instance:
