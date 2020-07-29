@@ -1,0 +1,50 @@
+server:
+  port: 9099
+
+spring:
+  application:
+    name: profile-service
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+ 
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+app:
+  auth:
+    tokenSecret: ${TOKEN_SECRET}
+#    tokenExpirationMsec: 864000000 #10 days
+#    tokenExpirationMsec: 300000 #5 mins
+#    tokenExpirationMsec: 600000 #10 mins
+#    tokenExpirationMsec: 3600000 #1 hour
+    tokenExpirationMsec: 7200000 #2 hours
+#    tokenExpirationMsec: 86400000 #1 days
+  verificationExpirationMsec: 300000 #5 mins
+  eventCancelationValidMaxMsec: 86400000 #24 hours
+  rateUserValidMaxMsec: 172800000 #48 hours‬
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 2
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL}/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
