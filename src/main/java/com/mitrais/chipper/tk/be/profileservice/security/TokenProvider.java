@@ -1,11 +1,12 @@
 package com.mitrais.chipper.tk.be.profileservice.security;
 
-import com.mitrais.chipper.tk.be.profileservice.config.JwtConfig;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.mitrais.chipper.tk.be.profileservice.config.JwtConfig;
 
 import java.util.Date;
 

@@ -1,9 +1,9 @@
 package com.mitrais.chipper.tk.be.profileservice.service;
 
-import com.mitrais.chipper.tk.be.profileservice.controller.dto.response.ProfileCreatorResponseDto;
-import com.mitrais.chipper.tk.be.profileservice.controller.dto.response.ProfileResponseDto;
+import com.mitrais.chipper.tk.be.profileservice.dto.response.ProfileCreatorResponseDTO;
+import com.mitrais.chipper.tk.be.profileservice.dto.response.ProfileByUserIdResponseDTO;
 
 public interface QueryService {
-    ProfileResponseDto findByUserId(String token, Long userId);
-    ProfileCreatorResponseDto findOtherPersonProfile(String token, Long userId);
+    ProfileByUserIdResponseDTO findByUserId(String header, Long userId);
+    ProfileCreatorResponseDTO findOtherPersonProfile(String header, Long userId);
 }

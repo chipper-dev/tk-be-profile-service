@@ -2,6 +2,7 @@ package com.mitrais.chipper.tk.be.profileservice.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.mitrais.chipper.tk.be.profileservice.common.CommonResource;
+
 import net.minidev.json.JSONObject;
 import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.http.HttpHeaders;

@@ -1,8 +1,7 @@
 package com.mitrais.chipper.tk.be.profileservice.config;
 
-import com.mitrais.chipper.tk.be.profileservice.interfaces.UserInterface;
-import com.mitrais.chipper.tk.be.profileservice.security.TokenAuthenticationFilter;
-import com.mitrais.chipper.tk.be.profileservice.security.TokenProvider;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import javax.servlet.http.HttpServletResponse;
+import com.mitrais.chipper.tk.be.profileservice.feign.LegacyFeignClient;
+import com.mitrais.chipper.tk.be.profileservice.security.TokenAuthenticationFilter;
+import com.mitrais.chipper.tk.be.profileservice.security.TokenProvider;
 
 @Configuration
 @EnableWebSecurity
@@ -24,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private TokenProvider tokenProvider;
 
     @Autowired
-    private UserInterface userInterface;
+    private LegacyFeignClient legacyFeignClient;
 
     private static final String[] AUTH_WHITELIST = {
             "/swagger-resources/**",
@@ -42,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling().authenticationEntryPoint((req, rsp, e) -> rsp.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
-                .addFilterAfter(new TokenAuthenticationFilter(jwtConfig, userInterface, tokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(new TokenAuthenticationFilter(jwtConfig, legacyFeignClient, tokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated();

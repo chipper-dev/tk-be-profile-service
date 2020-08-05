@@ -8,6 +8,8 @@ CREATE TABLE public.profiles (
 	about_me varchar(200) NULL,
 	interest varchar(200) NULL,
 	photo_profile_url varchar(200) NULL,
+	photo_profile oid NULL,
+	photo_profile_filename varchar NULL,
 	created_by varchar NOT NULL,
 	created_date timestamp NOT NULL,
 	last_modified_by varchar NOT NULL,

@@ -1,7 +1,8 @@
-package com.mitrais.chipper.tk.be.profileservice.controller.dto.response;
+package com.mitrais.chipper.tk.be.profileservice.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mitrais.chipper.tk.be.profileservice.common.Gender;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 @Data
 @Builder
 @ApiModel(description = "All details about Profile. ")
-public class ProfileResponseDto {
+public class ProfileByUserIdResponseDTO {
 
     @ApiModelProperty(notes = "Profile DB id")
     private Long profileId;

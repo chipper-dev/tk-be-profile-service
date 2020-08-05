@@ -1,6 +1,5 @@
-package com.mitrais.chipper.tk.be.profileservice.controller.dto.response;
+package com.mitrais.chipper.tk.be.profileservice.dto.response;
 
-import com.mitrais.chipper.tk.be.profileservice.common.Gender;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -8,12 +7,15 @@ import lombok.Data;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+
+import com.mitrais.chipper.tk.be.profileservice.common.Gender;
+
 import java.util.HashMap;
 
 @Data
 @Builder
 @ApiModel(description = "All details about Creator Profile. ")
-public class ProfileCreatorResponseDto {
+public class ProfileCreatorResponseDTO {
     @ApiModelProperty(notes = "Profile full name")
     private String fullName;
 

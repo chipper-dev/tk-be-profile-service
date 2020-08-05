@@ -1,25 +1,38 @@
 package com.mitrais.chipper.tk.be.profileservice.entity;
 
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.ResultCheckStyle;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.mitrais.chipper.tk.be.profileservice.common.Gender;
-import com.mitrais.chipper.tk.be.profileservice.entity.common.Auditable;
+import com.mitrais.chipper.tk.be.profileservice.config.audit.Auditable;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ResultCheckStyle;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.time.LocalDate;
 
 @Data
 @Builder
@@ -72,11 +85,13 @@ public class Profile extends Auditable<String> {
     @Size(max = 200)
     private String interest;
 
-    @ApiModelProperty(notes = "Photo profile url")
-    @Column(length = 200)
-    @Size(max = 200)
-    private String photoProfileUrl;
+	@Lob
+	@ApiModelProperty(notes = "Profile photo profile data byte")
+	private byte[] photoProfile;
+
+	@ApiModelProperty(notes = "Profile photo filename")
+	private String photoProfileFilename;
 
     @NotNull
-    protected boolean deleted;
+    private boolean deleted;
 }

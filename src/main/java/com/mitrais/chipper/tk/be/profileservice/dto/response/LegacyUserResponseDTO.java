@@ -1,4 +1,4 @@
-package com.mitrais.chipper.tk.be.profileservice.interfaces.dto;
+package com.mitrais.chipper.tk.be.profileservice.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import static javax.persistence.TemporalType.TIMESTAMP;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserResponseDto {
+public class LegacyUserResponseDTO {
     private Long userId;
     private String email;
     private String passwordHashed;
