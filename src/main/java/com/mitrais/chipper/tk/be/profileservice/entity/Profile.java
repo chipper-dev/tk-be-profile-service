@@ -41,7 +41,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "profiles")
 @EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = { "createdBy", "createdDate", "modifiedBy", "modifiedDate" }, allowGetters = true)
+@JsonIgnoreProperties(value = { "createdBy", "createdDate", "lastModifiedBy", "lastmodifiedDate" }, allowGetters = true)
 @ApiModel(description = "All details about Profile. ")
 @SQLDelete(sql = "UPDATE profiles SET deleted = true WHERE id = ?", check = ResultCheckStyle.COUNT)
 @Where(clause = "deleted = false")

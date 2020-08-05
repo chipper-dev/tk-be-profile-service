@@ -3,10 +3,9 @@ spring:
     hikari:
       connectionTimeout: 20000
       maximumPoolSize: 5
-      auto-commit: false
-    url: jdbc:postgresql://localhost:5432/tk_db_profile_service
-    username: postgres
-    password: admin
+    url: jdbc:postgresql://${DB_HOST}:5432/tk_db_profile_service_test
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
     hibernate:
@@ -17,16 +16,6 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-  flyway:
-    validateOnMigrate: false
-
-security:
-  jwt:
-    secret: 963D96C90030DD58429D2751AC1BDBBC
-
-feign:
-  hystrix:
-    enabled: false
 
 eureka:
   instance:
@@ -35,10 +24,8 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: ${EUREKA_SERVER_URL}/eureka/
     healthcheck:
       enabled: true
     lease:
       duration: 5
-    register-with-eureka: true
-    fetch-registry: true
