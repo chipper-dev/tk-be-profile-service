@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.mitrais.chipper.tk.be.profileservice.dto.response.LegacyProfileResponseDTO;
+import com.mitrais.chipper.tk.be.profileservice.dto.request.LegacyProfileRequestDTO;
 import com.mitrais.chipper.tk.be.profileservice.entity.Profile;
 import com.mitrais.chipper.tk.be.profileservice.exception.BadRequestException;
 import com.mitrais.chipper.tk.be.profileservice.feign.LegacyFeignClient;
@@ -27,7 +27,7 @@ public class MigrateServiceImpl implements MigrateService {
 
 	@Override
 	public void fetchAndSaveFromLegacy(String header, Long userId) {
-		List<LegacyProfileResponseDTO> profiles = legacyFeignClient.fetchProfileDataFromLegacy(header)
+		List<LegacyProfileRequestDTO> profiles = legacyFeignClient.fetchProfileDataFromLegacy(header)
 				.orElseThrow(() -> new BadRequestException("Error: No profile found!"));
 		List<Profile> batchProfile = new ArrayList<>();
 		profiles.forEach(p -> {

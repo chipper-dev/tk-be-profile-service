@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mitrais.chipper.tk.be.profileservice.dto.response.LegacyProfileResponseDTO;
+import com.mitrais.chipper.tk.be.profileservice.dto.request.LegacyProfileRequestDTO;
 import com.mitrais.chipper.tk.be.profileservice.dto.response.LegacyUserResponseDTO;
 import com.mitrais.chipper.tk.be.profileservice.entity.Profile;
 
@@ -23,7 +23,7 @@ public interface LegacyFeignClient {
 	
 	//fetch legacy profile data
 	@GetMapping(value = "/db/allprofiles")
-    Optional<List<LegacyProfileResponseDTO>> fetchProfileDataFromLegacy(@RequestHeader(HttpHeaders.AUTHORIZATION) String header);
+    Optional<List<LegacyProfileRequestDTO>> fetchProfileDataFromLegacy(@RequestHeader(HttpHeaders.AUTHORIZATION) String header);
     
 	// user service
     @GetMapping(value = "/user/{id}")

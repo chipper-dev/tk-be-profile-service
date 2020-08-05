@@ -1,4 +1,4 @@
-package com.mitrais.chipper.tk.be.profileservice.dto.response;
+package com.mitrais.chipper.tk.be.profileservice.dto.request;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LegacyProfileResponseDTO {
+public class LegacyProfileRequestDTO {
 	private Long profileId;
 	private Long userId;
 	private String fullName;

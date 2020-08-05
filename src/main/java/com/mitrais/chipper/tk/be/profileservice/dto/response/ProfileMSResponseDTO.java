@@ -32,7 +32,7 @@ public class ProfileMSResponseDTO {
 	private String lastModifiedBy;
 	private Date lastModifiedDate;
 
-	public ProfileMSResponseDTO(Profile profile) {
+	public ProfileMSResponseDTO(ProfileMSResponseDTO profile) {
 		this.id = profile.getId();
 		this.userId = profile.getUserId();
 		this.fullName = profile.getFullName();

@@ -44,7 +44,7 @@ public class QueryController extends CommonResource {
         String token = getToken(header);
         Long userId = tokenProvider.getUserIdFromToken(token);
 
-        ProfileByUserIdResponseDTO responseWrapper = queryService.findByUserId(header, userId);
+        ProfileByUserIdResponseDTO responseWrapper = queryService.findByLegacyUser(header, userId);
         return ResponseEntity.ok(getResponseBody(HttpStatus.OK.value(), responseWrapper, request.getRequestURI()));
     }
 

@@ -4,6 +4,7 @@ import com.mitrais.chipper.tk.be.profileservice.dto.response.ProfileCreatorRespo
 import com.mitrais.chipper.tk.be.profileservice.dto.response.ProfileByUserIdResponseDTO;
 
 public interface QueryService {
-    ProfileByUserIdResponseDTO findByUserId(String header, Long userId);
+	ProfileByUserIdResponseDTO findByLegacyUser(String header, Long userId);
     ProfileCreatorResponseDTO findOtherPersonProfile(String header, Long userId);
+	
 }

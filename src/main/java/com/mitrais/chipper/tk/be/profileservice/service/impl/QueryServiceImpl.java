@@ -27,7 +27,7 @@ public class QueryServiceImpl implements QueryService {
 	private LegacyFeignClient legacyFeignClient;
 
 	@Override
-	public ProfileByUserIdResponseDTO findByUserId(String header, Long userId) {
+	public ProfileByUserIdResponseDTO findByLegacyUser(String header, Long userId) {
 		LegacyUserResponseDTO user = legacyFeignClient.fetchUserbyId(header, userId)
 				.orElseThrow(() -> new BadRequestException("No user with user id : " + userId));
 
