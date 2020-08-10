@@ -48,7 +48,7 @@ node{
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
 
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer --restart always -d $image"
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer ACTIVE_ENV=prod -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password  --restart always -d $image"
         }
     }
 }
