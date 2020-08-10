@@ -11,9 +11,9 @@ node{
     def mvnHome = tool name: 'maven-default', type: 'maven'
     def mvnCMD = "${mvnHome}/bin/mvn"
     def remote = [:]
-    def db_username = env.dbAuthUser
-	def db_password = env.dbAuthPassword
-	def activeEnv = prod
+    def db_username = "${env.dbAuthUser}"
+	def db_password = "${env.dbAuthPassword}"
+	def activeEnv = "prod"
     remote.name = 'chippermitrais'
     remote.host = 'chippermitrais.ddns.net'
     remote.allowAnyHosts = true
