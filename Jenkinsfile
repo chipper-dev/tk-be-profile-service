@@ -11,6 +11,9 @@ node{
     def mvnHome = tool name: 'maven-default', type: 'maven'
     def mvnCMD = "${mvnHome}/bin/mvn"
     def remote = [:]
+    def db_username = env.dbAuthUser
+	def db_password = env.dbAuthPassword
+	def activeEnv = prod
     remote.name = 'chippermitrais'
     remote.host = 'chippermitrais.ddns.net'
     remote.allowAnyHosts = true
@@ -47,8 +50,8 @@ node{
                 }
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
-
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer ACTIVE_ENV=prod -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password  --restart always -d $image"
+				
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer -e ACTIVE_ENV=$activeEnv -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password  --restart always -d $image"
         }
     }
 }
