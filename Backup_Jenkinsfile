@@ -15,7 +15,7 @@ node{
 	def db_password = "${env.dbAuthPassword}"
 	def activeEnv = "prod"
 	def token_secret = "${env.tokenSecret}"
-	def db_url = jdbc:postgresql://chippermitrais.ddns.net:5432/tk_be_profile_service
+	def db_url = "jdbc:postgresql://chippermitrais.ddns.net:5432/tk_be_profile_service"
     remote.name = 'chippermitrais'
     remote.host = 'chippermitrais.ddns.net'
     remote.allowAnyHosts = true
@@ -24,9 +24,10 @@ node{
         checkout scm
     }
     stage('Build Source Code') {
+    withCredentials([
         usernamePassword(credentialsId: 'team6-dbAuth', passwordVariable: 'dbAuthPassword', usernameVariable: 'dbAuthUser')
         ]) {
-            sh "${mvnCMD} clean package -DskipTests -Dspring.datasource.url=$db_url -Dspring.datasource.username=$env.dbAuthUser -Dspring.datasource.password=$env.dbAuthPassword"
+            sh "${mvnCMD} clean package -DskipTests -Dspring.profiles.active=$activeEnv -Dspring.datasource.url=$db_url -Dspring.datasource.username=$env.dbAuthUser -Dspring.datasource.password=$env.dbAuthPassword"
         }
     }
     stage('Build Docker Image') {
