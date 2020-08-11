@@ -4,7 +4,7 @@ spring:
       connectionTimeout: 20000
       maximumPoolSize: 5
       auto-commit: false
-    url: jdbc:postgresql://${DB_HOST}:5432/tk_db_profile_service
+    url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
   jpa:

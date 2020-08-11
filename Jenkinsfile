@@ -15,6 +15,7 @@ node{
 	def db_password = "${env.dbAuthPassword}"
 	def activeEnv = "prod"
 	def token_secret = "${env.tokenSecret}"
+	def db_url = jdbc:postgresql://chippermitrais.ddns.net:5432/tk_be_profile_service
     remote.name = 'chippermitrais'
     remote.host = 'chippermitrais.ddns.net'
     remote.allowAnyHosts = true
@@ -23,7 +24,10 @@ node{
         checkout scm
     }
     stage('Build Source Code') {
-        sh "${mvnCMD} clean package -DskipTests"
+        usernamePassword(credentialsId: 'team6-dbAuth', passwordVariable: 'dbAuthPassword', usernameVariable: 'dbAuthUser')
+        ]) {
+            sh "${mvnCMD} clean package -DskipTests -Dspring.datasource.url=$db_url -Dspring.datasource.username=$env.dbAuthUser -Dspring.datasource.password=$env.dbAuthPassword"
+        }
     }
     stage('Build Docker Image') {
         app = docker.build(image)
@@ -52,7 +56,7 @@ node{
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
 				
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer -e TOKEN_SECRET=$token_secret -e ACTIVE_ENV=$activeEnv -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password  --restart always -d $image"
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer -e TOKEN_SECRET=$token_secret -e ACTIVE_ENV=$activeEnv -e DB_URL=$db_url -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password --restart always -d $image"
         }
     }
 }
