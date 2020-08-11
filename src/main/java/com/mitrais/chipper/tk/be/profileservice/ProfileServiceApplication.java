@@ -12,12 +12,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableFeignClients
 @EnableEurekaClient
-@EnableCircuitBreaker
-@EnableHystrixDashboard
-@EnableHystrix
+//@EnableCircuitBreaker
+//@EnableHystrixDashboard
+//@EnableHystrix
 @SpringBootApplication
-@EnableAutoConfiguration
-@EnableJpaAuditing(auditorAwareRef = "auditorAware")
+//@EnableAutoConfiguration
+//@EnableJpaAuditing(auditorAwareRef = "auditorAware")
 public class ProfileServiceApplication {
 
 	public static void main(String[] args) {
