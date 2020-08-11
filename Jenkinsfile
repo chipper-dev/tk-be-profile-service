@@ -11,7 +11,7 @@ node{
     def mvnHome = tool name: 'maven-default', type: 'maven'
     def mvnCMD = "${mvnHome}/bin/mvn"
     def remote = [:]
-    def activeEnv = "testfromscracth"
+    def activeEnv = "testfromscratch"
 	
 	stage('SCM Checkout') {
         checkout scm
