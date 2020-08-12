@@ -1,14 +1,9 @@
 spring:
   application:
     name: profile-service
-  
-security:
-  jwt:
-    secret: 963D96C90030DD58429D2751AC1BDBBC
 
-feign:
-  hystrix:
-    enabled: false
+server:
+  port: 9099
 
 eureka:
   instance:
@@ -22,5 +17,3 @@ eureka:
       enabled: true
     lease:
       duration: 5
-    register-with-eureka: true
-    fetch-registry: true
