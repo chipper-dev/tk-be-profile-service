@@ -12,6 +12,9 @@ node{
     def mvnCMD = "${mvnHome}/bin/mvn"
     def remote = [:]
     def activeEnv = "testfromscratch"
+    remote.name = 'chippermitrais'
+    remote.host = 'chippermitrais.ddns.net'
+    remote.allowAnyHosts = true
 	
 	stage('SCM Checkout') {
         checkout scm
