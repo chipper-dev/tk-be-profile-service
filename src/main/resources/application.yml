@@ -1,6 +1,26 @@
-server:
-  port: 9091
-
 spring:
-  profiles:
-    active: ${ACTIVE_ENV}
+  application:
+    name: profile-service
+  
+security:
+  jwt:
+    secret: 963D96C90030DD58429D2751AC1BDBBC
+
+feign:
+  hystrix:
+    enabled: false
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 2
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://tk-be-discovery-service:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+    register-with-eureka: true
+    fetch-registry: true
