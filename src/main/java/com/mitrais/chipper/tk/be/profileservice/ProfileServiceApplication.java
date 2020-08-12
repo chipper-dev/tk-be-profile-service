@@ -13,7 +13,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 //@EnableFeignClients
 @EnableEurekaClient
-@EnableDiscoveryClient
 //@EnableCircuitBreaker
 //@EnableHystrixDashboard
 //@EnableHystrix
