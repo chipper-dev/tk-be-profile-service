@@ -1,9 +1,21 @@
+server:
+  port: 9099
+
 spring:
   application:
     name: profile-service
+  management:
+    security:
+      enabled: false
 
-server:
-  port: 9099
+#ENABLE DYNAMIC ROUTING
+management:
+  endpoints:
+    routes:
+      enabled: true
+    web:
+      exposure:
+        include: "*"
 
 eureka:
   instance:
@@ -12,7 +24,7 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://tk-be-discovery-service:8761/eureka/
+      defaultZone: ${EUREKA_SERVER_URL}/eureka/
     healthcheck:
       enabled: true
     lease:

@@ -11,16 +11,15 @@ node{
     def mvnHome = tool name: 'maven-default', type: 'maven'
     def mvnCMD = "${mvnHome}/bin/mvn"
     def remote = [:]
-    def activeEnv = "testfromscratch"
     remote.name = 'chippermitrais'
     remote.host = 'chippermitrais.ddns.net'
     remote.allowAnyHosts = true
-	
-	stage('SCM Checkout') {
+
+    stage('SCM Checkout') {
         checkout scm
     }
     stage('Build Source Code') {
-        sh "${mvnCMD} clean package -DskipTests -Dspring.profiles.active=$activeEnv"
+        sh "${mvnCMD} clean package -DskipTests"
     }
     stage('Build Docker Image') {
         app = docker.build(image)
@@ -48,8 +47,8 @@ node{
                 }
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
-				
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer -e ACTIVE_ENV=$activeEnv --restart always -d $image"
+
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer --restart always -d $image"
         }
     }
 }
