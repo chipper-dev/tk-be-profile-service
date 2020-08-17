@@ -19,7 +19,7 @@ node{
         checkout scm
     }
     stage('Build Source Code') {
-        sh "${mvnCMD} clean package -DskipTests"
+        sh "${mvnCMD} -B -DskipTests clean package"
     }
     stage('Build Docker Image') {
         app = docker.build(image)
