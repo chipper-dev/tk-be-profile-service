@@ -26,7 +26,11 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-            
+
+logging:
+  file:
+    name: /home/ubuntu/spring-boot-app.log
+          
 #ENABLE DYNAMIC ROUTING
 #management:
 #  endpoints:

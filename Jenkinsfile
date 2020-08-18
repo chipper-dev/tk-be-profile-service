@@ -55,7 +55,7 @@ node{
 				db_username = env.dbAuthUser
                 db_password = env.dbAuthPassword
                 
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network DB_URL=jdbc:postgresql://chipper-db:5432/tk-db-profile-service -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password --restart always -d $image"
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e DB_URL=jdbc:postgresql://chipper-db:5432/tk-db-profile-service -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password --restart always -d $image"
         }
     }
 }
