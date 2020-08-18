@@ -29,7 +29,7 @@ spring:
 
 logging:
   file:
-    name: /home/ubuntu/spring-boot-app.log
+    name: /home/ubuntu/tk-be-profile-service.log
           
 #ENABLE DYNAMIC ROUTING
 #management:

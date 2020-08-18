@@ -21,7 +21,7 @@ node{
     stage('Build Source Code') {
         withCredentials([
         usernamePassword(credentialsId: 'team6-dbAuth', passwordVariable: 'dbAuthPassword', usernameVariable: 'dbAuthUser')]) {
-            sh "${mvnCMD} -B -DskipTests clean verify -Dspring.datasource.url=jdbc:postgresql://chippermitrais.ddns.net:5432/tk-db-profile-service -Dspring.datasource.username=$env.dbAuthUser -Dspring.datasource.password=$env.dbAuthPassword"
+            sh "${mvnCMD} -B -DskipTests clean verify -Dspring.datasource.url=jdbc:postgresql://chippermitrais.ddns.net:5432/tk_db_profile_service -Dspring.datasource.username=$dbAuthUser -Dspring.datasource.password=$dbAuthPassword"
         }
     }
     stage('Build Docker Image') {
@@ -29,7 +29,7 @@ node{
     }
     stage('Push Image') {
         withCredentials([usernamePassword(credentialsId: 'team6-dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
-            sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+            sh "docker login -u $dockerHubUser -p $dockerHubPassword"
             sh "docker push $image"
         }
     }
@@ -52,10 +52,7 @@ node{
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
 				
-				db_username = env.dbAuthUser
-                db_password = env.dbAuthPassword
-                
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e DB_URL=jdbc:postgresql://chipper-db:5432/tk-db-profile-service -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password --restart always -d $image"
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e DB_URL=jdbc:postgresql://chipper-db:5432/tk_db_profile_service -e DB_USERNAME=$dbAuthUser -e DB_PASSWORD=$dbAuthPassword --restart always -d $image"
         }
     }
 }
