@@ -8,24 +8,43 @@ spring:
     security:
       enabled: false
 
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+      auto-commit: false
+    url: jdbc:postgresql://chipper-db:5432/tk_db_profile_service
+    username: postgres
+    password: 92JjTEb5CYmqkr
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+            
 #ENABLE DYNAMIC ROUTING
-management:
-  endpoints:
-    routes:
-      enabled: true
-    web:
-      exposure:
-        include: "*"
-
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 5
-    leaseExpirationDurationInSeconds: 2
-    prefer-ip-address: true
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVER_URL}/eureka/
-    healthcheck:
-      enabled: true
-    lease:
-      duration: 5
+#management:
+#  endpoints:
+#    routes:
+#      enabled: true
+#    web:
+#      exposure:
+#        include: "*"
+#
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 5
+#    leaseExpirationDurationInSeconds: 2
+#    prefer-ip-address: true
+#  client:
+#    serviceUrl:
+#      defaultZone: ${EUREKA_SERVER_URL}/eureka/
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration: 5
