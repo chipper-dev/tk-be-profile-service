@@ -13,9 +13,9 @@ spring:
       connectionTimeout: 20000
       maximumPoolSize: 5
       auto-commit: false
-    url: jdbc:postgresql://chipper-db:5432/tk_db_profile_service
-    username: postgres
-    password: 92JjTEb5CYmqkr
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: true
     hibernate:

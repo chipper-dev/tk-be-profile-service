@@ -19,7 +19,10 @@ node{
         checkout scm
     }
     stage('Build Source Code') {
-        sh "${mvnCMD} -B -DskipTests clean package"
+        withCredentials([
+        usernamePassword(credentialsId: 'team6-dbAuth', passwordVariable: 'dbAuthPassword', usernameVariable: 'dbAuthUser')]) {
+            sh "${mvnCMD} -B -DskipTests clean verify -Dspring.datasource.url=jdbc:postgresql://chippermitrais.ddns.net:5432/tk-db-profile-service -Dspring.datasource.username=$env.dbAuthUser -Dspring.datasource.password=$env.dbAuthPassword"
+        }
     }
     stage('Build Docker Image') {
         app = docker.build(image)
@@ -32,6 +35,7 @@ node{
     }
     stage('Remove Existing Docker Image & Run Application') {
         withCredentials([
+            usernamePassword(credentialsId: 'team6-dbAuth', passwordVariable: 'dbAuthPassword', usernameVariable: 'dbAuthUser'),
             sshUserPrivateKey(credentialsId: 'team6-chippermitrais', keyFileVariable: 'sshkey', usernameVariable: 'sshuname')
             ]) {
                 remote.user = env.sshuname
@@ -47,8 +51,11 @@ node{
                 }
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
-
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer --restart always -d $image"
+				
+				db_username = env.dbAuthUser
+                db_password = env.dbAuthPassword
+                
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network DB_URL=jdbc:postgresql://chipper-db:5432/tk-db-profile-service -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password --restart always -d $image"
         }
     }
 }
