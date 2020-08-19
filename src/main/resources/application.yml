@@ -32,23 +32,23 @@ logging:
     name: /home/ubuntu/tk-be-profile-service.log
           
 #ENABLE DYNAMIC ROUTING
-#management:
-#  endpoints:
-#    routes:
-#      enabled: true
-#    web:
-#      exposure:
-#        include: "*"
-#
-#eureka:
-#  instance:
-#    leaseRenewalIntervalInSeconds: 5
-#    leaseExpirationDurationInSeconds: 2
-#    prefer-ip-address: true
-#  client:
-#    serviceUrl:
-#      defaultZone: ${EUREKA_SERVER_URL}/eureka/
-#    healthcheck:
-#      enabled: true
-#    lease:
-#      duration: 5
+management:
+  endpoints:
+    routes:
+      enabled: true
+    web:
+      exposure:
+        include: "*"
+
+eureka:  
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_SERVER_URL}
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 2
+    prefer-ip-address: true
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5

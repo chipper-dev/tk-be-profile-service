@@ -1,4 +1,4 @@
-package com.mitrais.chipper.tk.be.profileservice.feign.controller;
+package com.mitrais.chipper.tk.be.profileservice.controller;
 
 import javax.servlet.http.HttpServletRequest;
 

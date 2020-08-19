@@ -3,7 +3,7 @@ node{
     def name = "tk-be-profile-service"
     def port = "9091"
     def network = "tk-be-network"
-    def eurekaServer = "http://tk-be-discovery-service:8761"
+    def eurekaServer = "http://tk-be-discovery-service:8761/eureka/"
     def build = "${env.BUILD_NUMBER}"
     def version = "1"
     def imageName = "chippermitrais/$name"
@@ -21,7 +21,7 @@ node{
     stage('Build Source Code') {
         withCredentials([
         usernamePassword(credentialsId: 'team6-dbAuth', passwordVariable: 'dbAuthPassword', usernameVariable: 'dbAuthUser')]) {
-            sh "${mvnCMD} -B -DskipTests clean verify -Dspring.datasource.url=jdbc:postgresql://chippermitrais.ddns.net:5432/tk_db_profile_service -Dspring.datasource.username=$dbAuthUser -Dspring.datasource.password=$dbAuthPassword"
+            sh "${mvnCMD} -B -DskipTests clean verify -Deureka.client.serviceUrl.defaultZone=http://chippermitrais.ddns.net:8761/eureka/ -Dspring.datasource.url=jdbc:postgresql://chippermitrais.ddns.net:5432/tk_db_profile_service -Dspring.datasource.username=$dbAuthUser -Dspring.datasource.password=$dbAuthPassword"
         }
     }
     stage('Build Docker Image') {
@@ -52,7 +52,7 @@ node{
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
 				
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e DB_URL=jdbc:postgresql://chipper-db:5432/tk_db_profile_service -e DB_USERNAME=$dbAuthUser -e DB_PASSWORD=$dbAuthPassword --restart always -d $image"
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer -e DB_URL=jdbc:postgresql://chipper-db:5432/tk_db_profile_service -e DB_USERNAME=$dbAuthUser -e DB_PASSWORD=$dbAuthPassword --restart always -d $image"
         }
     }
 }
