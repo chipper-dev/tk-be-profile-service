@@ -27,6 +27,15 @@ spring:
           lob:
             non_contextual_creation: true
 
+  cloud:
+    loadbalancer:
+      ribbon: 
+        enabled: false
+
+security:
+  jwt:
+    secret: 963D96C90030DD58429D2751AC1BDBBC
+    
 logging:
   file:
     name: /home/ubuntu/tk-be-profile-service.log
