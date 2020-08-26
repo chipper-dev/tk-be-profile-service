@@ -34,7 +34,7 @@ spring:
 
 security:
   jwt:
-    secret: 963D96C90030DD58429D2751AC1BDBBC
+    secret: ${TOKEN_SECRET}
     
 logging:
   file:

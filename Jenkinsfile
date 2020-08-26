@@ -36,7 +36,8 @@ node{
     stage('Remove Existing Docker Image & Run Application') {
         withCredentials([
             usernamePassword(credentialsId: 'team6-dbAuth', passwordVariable: 'dbAuthPassword', usernameVariable: 'dbAuthUser'),
-            sshUserPrivateKey(credentialsId: 'team6-chippermitrais', keyFileVariable: 'sshkey', usernameVariable: 'sshuname')
+            sshUserPrivateKey(credentialsId: 'team6-chippermitrais', keyFileVariable: 'sshkey', usernameVariable: 'sshuname'),
+            string(credentialsId: 'team6-token-secret', variable: 'tokenSecret')
             ]) {
                 remote.user = env.sshuname
                 remote.identityFile = env.sshkey
@@ -52,7 +53,7 @@ node{
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
 				
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer -e DB_URL=jdbc:postgresql://chipper-db:5432/tk_db_profile_service -e DB_USERNAME=$dbAuthUser -e DB_PASSWORD=$dbAuthPassword --restart always -d $image"
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer -e DB_URL=jdbc:postgresql://chipper-db:5432/tk_db_profile_service -e DB_USERNAME=$dbAuthUser -e DB_PASSWORD=$dbAuthPassword -e TOKEN_SECRET=$token_secret --restart always -d $image"
         }
     }
 }
