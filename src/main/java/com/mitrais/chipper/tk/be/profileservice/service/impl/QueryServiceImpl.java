@@ -20,11 +20,14 @@ import com.mitrais.chipper.tk.be.profileservice.service.QueryService;
 @Service
 public class QueryServiceImpl implements QueryService {
 
-	@Autowired
 	private ProfileRepository profileRepository;
+	private LegacyFeignClient legacyFeignClient;
 
 	@Autowired
-	private LegacyFeignClient legacyFeignClient;
+	QueryServiceImpl(ProfileRepository profileRepository, LegacyFeignClient legacyFeignClient) {
+		this.profileRepository = profileRepository;
+		this.legacyFeignClient = legacyFeignClient;
+	}
 
 	@Override
 	public ProfileByUserIdResponseDTO findByLegacyUser(String header, Long userId) {
