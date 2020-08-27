@@ -1,9 +1,10 @@
 package com.mitrais.chipper.tk.be.profileservice.config;
 
 
+import org.springframework.beans.factory.annotation.Value;
+
 import lombok.Getter;
 import lombok.ToString;
-import org.springframework.beans.factory.annotation.Value;
 
 @Getter
 @ToString

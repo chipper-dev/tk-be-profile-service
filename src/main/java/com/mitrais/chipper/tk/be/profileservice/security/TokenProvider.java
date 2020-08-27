@@ -5,7 +5,7 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.mitrais.chipper.tk.be.profileservice.config.JwtConfig;
 
@@ -16,7 +16,7 @@ import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
-@Component
+@Service
 public class TokenProvider {
 	private static final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
 
