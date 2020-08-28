@@ -18,6 +18,9 @@ import com.mitrais.chipper.tk.be.profileservice.common.ResponseBody;
 import com.mitrais.chipper.tk.be.profileservice.security.TokenProvider;
 import com.mitrais.chipper.tk.be.profileservice.service.MigrateService;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @Validated
 @RequestMapping("/migrate")
@@ -31,12 +34,16 @@ public class MigrateController extends CommonResource {
 
 	@Autowired
 	private Environment env;
-
+	
+	@ApiOperation(value = "Get Profile From Token", response = ResponseEntity.class)
+    @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class, example = "Bearer <access_token>")
 	@GetMapping("/hello")
 	public String index(HttpServletRequest request) {
 		return "Hello from Profile Service running at port: " + env.getProperty("local.server.port");
 	}
 	
+	@ApiOperation(value = "Fetch All Data From Legacy And Save In Profile Microservice", response = ResponseEntity.class)
+    @ApiImplicitParam(name = "Authorization", value = "Access Token", required = true, allowEmptyValue = false, paramType = "header", dataTypeClass = String.class, example = "Bearer <access_token>")
 	@PostMapping("/fetchAndSaveDataFromLegacy")
 	public ResponseEntity<ResponseBody> fetchDBFromLegacy(HttpServletRequest request) {
 		LOGGER.info("Fetch and save all data from legacy profile to microservice profile");
