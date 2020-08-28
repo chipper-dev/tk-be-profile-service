@@ -39,10 +39,6 @@ security:
 logging:
   file:
     name: /home/ubuntu/tk-be-profile-service.log
-
-feign:
-  hystrix:
-    enabled: false
     
 #ENABLE DYNAMIC ROUTING
 management:
@@ -67,3 +63,12 @@ eureka:
       duration: 5
     register-with-eureka: true
     fetch-registry: true
+    
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 600000 #10 mins
+        readTimeout: 600000 #10 mins
