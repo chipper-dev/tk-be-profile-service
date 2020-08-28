@@ -34,7 +34,7 @@ public class ClientController {
 
 	}
 
-	@GetMapping("/find/{photoProfileName}")
+	@GetMapping("/findPhoto/{photoProfileName}")
 	public Profile findByPhotoProfileName(@PathVariable("photoProfileName") String photoProfileName)
 			throws FileNotFoundException {
 		return clientService.findByPhotoProfileName(photoProfileName);
