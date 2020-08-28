@@ -17,7 +17,7 @@ import com.mitrais.chipper.tk.be.profileservice.dto.request.LegacyProfileRequest
 import com.mitrais.chipper.tk.be.profileservice.dto.response.LegacyUserResponseDTO;
 import com.mitrais.chipper.tk.be.profileservice.entity.Profile;
 
-@FeignClient(name = "legacy-service")
+@FeignClient(name = "legacy-service-clone")
 @RequestMapping(value = "/legacy")
 public interface LegacyFeignClient {
 	
