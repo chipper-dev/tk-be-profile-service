@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,10 +17,13 @@ import com.mitrais.chipper.tk.be.profileservice.dto.request.LegacyProfileRequest
 import com.mitrais.chipper.tk.be.profileservice.entity.Profile;
 import com.mitrais.chipper.tk.be.profileservice.service.ClientService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
+@Api(value = "Profile Client Management System")
 @RestController
+@Validated
 @RequestMapping("/client")
 public class ClientController {
 

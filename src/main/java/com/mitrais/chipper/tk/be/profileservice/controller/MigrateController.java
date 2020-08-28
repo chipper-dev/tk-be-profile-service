@@ -18,9 +18,11 @@ import com.mitrais.chipper.tk.be.profileservice.common.ResponseBody;
 import com.mitrais.chipper.tk.be.profileservice.security.TokenProvider;
 import com.mitrais.chipper.tk.be.profileservice.service.MigrateService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 
+@Api(value = "Profile Migrate Management System")
 @RestController
 @Validated
 @RequestMapping("/migrate")
